@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import pickle
 import re
+import os
 
 # -------------------------
 # Definir tokenizador usado en el pipeline
@@ -36,5 +37,6 @@ def index():
     return render_template("index.html", resultado=resultado, urls_input=urls_input)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
