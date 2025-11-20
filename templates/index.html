@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detector de URLs Phishing</title>
+</head>
+<body>
+    <h1>Detector de URLs Phishing</h1>
+    <form method="post">
+        <label>Introduce URLs (una por línea):</label><br>
+        <textarea name="urls" rows="10" cols="80">{{ urls_input }}</textarea><br><br>
+        <input type="submit" value="Predecir">
+    </form>
+
+    {% if resultado %}
+        <h2>Resultados:</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <th>URL</th>
+                <th>Predicción</th>
+            </tr>
+            {% for url, pred in resultado %}
+            <tr>
+                <td>{{ url }}</td>
+                <td>{{ pred }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
