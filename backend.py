@@ -1,5 +1,7 @@
 # backend.py
 from flask import Flask, request, jsonify
+
+import os
 import pickle
 import re
 import traceback
@@ -98,6 +100,9 @@ def predict():
         traceback.print_exc()
         return jsonify({"error": "internal error", "detail": str(e)}), 500
 
+
 if __name__ == "__main__":
-    # Ejecutar en localhost:5000
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    port = int(os.getenv("PORT", 8080))  # Railway normalmente usa 8080
+    app.run(host="0.0.0.0", port=port)
+
+
